@@ -11,8 +11,7 @@ class Genre extends Model
     protected $table = 'genres';
     protected $fillable = ['name', 'description'];
 
-    public function books()
-    {
+    public function books(){
         return $this->hasMany(Book::class);
     }
 }

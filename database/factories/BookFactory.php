@@ -2,9 +2,9 @@
 
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Genre;
 use App\Models\Publisher;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Book>
@@ -14,9 +14,9 @@ class BookFactory extends Factory
     /**
      * Define the model's default state.
      *
-     * @return array<string, mixed>
+     * @return array
      */
-    public function definition(): array
+    public function definition()
     {
         return [
             'title' => $this->faker->name(),
@@ -25,12 +25,8 @@ class BookFactory extends Factory
             'page' => $this->faker->numberBetween(50, 1000),
             'published' => $this->faker->date(),
             'description' => $this->faker->text(1000),
-            
-            // Revisa si hay géneros disponibles antes de seleccionar uno al azar
-            'genre_id' => Genre::inRandomOrder()->first()->id,
-
-            // Revisa si hay publishers disponibles antes de seleccionar uno al azar
-            'publisher_id' => Publisher::inRandomOrder()->first()->id,
+            'genre_id' => Genre::all()->random()->id,
+            'publisher_id' => Publisher::all()->random()->id,
         ];
     }
 }

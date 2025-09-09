@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -40,21 +40,17 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'password' => 'hashed',
     ];
 
-    public function notes()
-    {
+    public function notes(){
         return $this->hasMany(Note::class);
     }
 
-    public function authors()
-    {
+    public function authors(){
         return $this->morphedByMany(Author::class, 'userable');
     }
 
-    public function books()
-    {
+    public function books(){
         return $this->morphedByMany(Book::class, 'userable');
     }
 }

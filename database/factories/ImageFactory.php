@@ -2,7 +2,6 @@
 
 namespace Database\Factories;
 
-use App\Models\Image;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -13,24 +12,14 @@ class ImageFactory extends Factory
     /**
      * Define the model's default state.
      *
-     * @return array<string, mixed>
+     * @return array
      */
-    public function definition(): array
+    public function definition()
     {
         return [
-            // Usa `storage_path()` para obtener la ruta absoluta y confiable
-            'url' => 'images/' . $this->faker->image(
-                storage_path('app/public/images'),
-                640,
-                480,
-                null,
-                false
-            ),
-            
-            // Laravel llenará estos campos automáticamente cuando uses `->has()`
-            // por lo que los inicializamos con `null` o los dejamos fuera.
-            'imageable_id' => null, 
-            'imageable_type' => null,
+            'url' => 'images/' . $this->faker->image('storage/app/public/images', 640,480, null, false),
+            'imageable_id' => $this->faker->randomElement([1, 2, 3, 4]),
+            'imageable_type' => $this->faker->randomElement(['App\Models\Author', 'App\Models\Book']),
         ];
     }
 }

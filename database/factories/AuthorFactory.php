@@ -12,12 +12,11 @@ class AuthorFactory extends Factory
     /**
      * Define the model's default state.
      *
-     * @return array<string, mixed>
+     * @return array
      */
-    public function definition(): array
+    public function definition()
     {
         return [
-            //
             'full_name' => $this->faker->firstName() . ' ' . $this->faker->lastName(),
             'birth_date' => $this->faker->date(),
             'Country' => $this->faker->country()
